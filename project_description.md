@@ -385,22 +385,25 @@ Amazon ReLife is the first step toward a fully circular commerce ecosystem and a
 
 # Our Long-Term Vision
 
-> Every Amazon product should have a meaningful second life instead of becoming waste.
-
 > Every customer should have access to trusted, affordable, and sustainable purchasing options.
 
 ---
 
-# Team Alpha
+# Additional Technical Details & Project Insights
 
-### Ishan Gaurav
+## AI Integration Depth
+- **Image Processing Pipeline:** The project utilizes specialized Computer Vision models pre-trained on defect datasets before passing structured data (bounding boxes and severity classifications) to Amazon Bedrock. This prevents the LLM from hallucinating defects and grounds its Health Score calculation in empirical visual evidence.
+- **Dynamic Pricing Assistance:** The Seller Copilot computes an optimal price drop curve based on the item's computed Health Score, guiding sellers to maximize value while ensuring rapid inventory turnover.
+- **Return Risk Profiling:** The AI Purchase Assistant reduces reverse logistics by factoring in historical sizing, category return rates, and real-time sentiment analysis before the customer even clicks "Buy."
 
-**Frontend Engineer & AI Engineer**
+## Scalability & Backend Engineering
+- **Event-Driven Architecture:** Crucial user actions (like 'Donation Completed' or 'Product Uploaded') trigger asynchronous background jobs (via queues) to avoid blocking the main Node.js event loop, ensuring a snappy UI.
+- **API Gateway & Microservices:** The gateway ensures that sudden spikes in computationally expensive AI verification traffic do not impact the core Buyer Marketplace experience, allowing the AI Service to scale out independently.
+- **NoSQL Flexibility:** MongoDB Atlas was chosen to gracefully handle the highly variable schema of second-hand goods, where a smartphone and a t-shirt require drastically different metadata tracking in their Digital Passports.
 
-### Satyam Shahdeo
+## Sustainability Impact (Green Credits)
+- **Impact-Based Rewards:** The Green Credits Engine computes rewards dynamically. For example, recycling a large electronic appliance (higher e-waste footprint) yields more credits than smaller items, incentivizing high-impact circular behavior.
+- **Immutable Digital Passport:** By using an append-only document structure for the Digital Passport, a product's lifecycle history (from original purchase to AI verification to resale) cannot be retroactively altered. This establishes absolute trust for the next buyer within the Amazon ecosystem.
 
-**Backend Engineer**
+---
 
-### Divyanshu Kumar
-
-**ML Engineer**
