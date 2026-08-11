@@ -390,17 +390,3 @@ Amazon ReLife is the first step toward a fully circular commerce ecosystem and a
 > Every customer should have access to trusted, affordable, and sustainable purchasing options.
 
 ---
-
-# Team Alpha
-
-### Ishan Gaurav
-
-**Frontend Engineer & AI Engineer**
-
-### Satyam Shahdeo
-
-**Backend Engineer**
-
-### Divyanshu Kumar
-
-**ML Engineer**
