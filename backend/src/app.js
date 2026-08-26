@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import { errorMiddleware } from './middleware/errorMiddleware.js';
-import { authRouter } from './routers/authRouter.js';
+import { authRouter } from './routes/authRoutes.js';
 import { apiRouter } from './routes/apiRoutes.js';
-import { userRouter } from './routers/userRouter.js';
+import { userRouter } from './routes/userRoutes.js';
 import { connectDB } from './config/db.js';
 
 // Connect to MongoDB
