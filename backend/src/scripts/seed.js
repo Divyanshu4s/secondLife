@@ -7,7 +7,6 @@ import { AmazonProduct } from '../models/AmazonProduct.js';
 import { RelifeProduct } from '../models/RelifeProduct.js';
 import { User } from '../models/User.js';
 import { Seller } from '../models/Seller.js';
-import { DigitalPassport } from '../models/DigitalPassport.js';
 
 // Raw data (copied structure from frontend mockData.js for the seed)
 // Note: In a real app we'd import the JSON, but since it's ES module JS exporting constants, we'll embed the raw seed arrays.
@@ -219,7 +218,6 @@ export const runSeed = async () => {
     await RelifeProduct.deleteMany({});
     await User.deleteMany({});
     await Seller.deleteMany({});
-    await DigitalPassport.deleteMany({});
 
     console.log('Seeding Users and Sellers...');
     const user = await User.create({
