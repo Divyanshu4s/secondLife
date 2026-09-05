@@ -6,7 +6,6 @@ import {
   getRelifeProductById,
   getRecommendationsForAsin,
   searchAllProducts,
-  getCrossMarketRecommendations,
   getMyRelifeListings,
   deleteRelifeListing
 } from '../controllers/productController.js';
@@ -45,7 +44,7 @@ router.delete('/relife-products/:id', protect, deleteRelifeListing);
 
 // Recommendations & Search
 router.get('/recommendations/:asin', getRecommendationsForAsin);
-router.get('/recommendations/cross-market/:productId', getCrossMarketRecommendations);
+
 router.get('/search', searchAllProducts);
 
 // Seller Dashboard

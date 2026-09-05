@@ -124,70 +124,7 @@ export const searchAllProducts = async (req, res) => {
   }
 };
 
-export const getCrossMarketRecommendations = async (req, res) => {
-  try {
-    const { productId } = req.params;
-    
-    let currentProduct = null;
-    let isAmazon = true;
-    
-    if (productId.match(/^[0-9a-fA-F]{24}$/)) {
-      currentProduct = await AmazonProduct.findById(productId);
-      if (!currentProduct) {
-        currentProduct = await RelifeProduct.findById(productId);
-        isAmazon = false;
-      }
-    } else {
-      currentProduct = await AmazonProduct.findOne({ originalId: productId });
-      if (!currentProduct) {
-        currentProduct = await RelifeProduct.findOne({ originalId: productId });
-        isAmazon = false;
-      }
-    }
 
-    if (!currentProduct) {
-      return res.status(404).json({ message: 'Product not found in either marketplace' });
-    }
-
-    const brandStr = currentProduct.brand || (currentProduct.specs && currentProduct.specs.get ? currentProduct.specs.get('Brand') : '') || '';
-    const categoryStr = currentProduct.category || '';
-    const searchText = `${brandStr} ${currentProduct.name} ${categoryStr}`.trim();
-    
-    let similarProducts = [];
-
-    if (isAmazon) {
-      let exactMatches = [];
-      if (currentProduct.originalId) {
-        exactMatches = await RelifeProduct.find({ originalAsin: currentProduct.originalId, status: 'ACTIVE' });
-      }
-
-      similarProducts = exactMatches.filter(p => p.availableUnits && p.availableUnits.length > 0);
-      
-      similarProducts.sort((a, b) => {
-        const bestCondA = Math.max(...a.availableUnits.map(u => u.conditionScore || 0));
-        const bestCondB = Math.max(...b.availableUnits.map(u => u.conditionScore || 0));
-        return bestCondB - bestCondA;
-      });
-
-    } else {
-      let exactMatches = [];
-      if (currentProduct.originalAsin) {
-        exactMatches = await AmazonProduct.find({ originalId: currentProduct.originalAsin });
-      }
-
-      similarProducts = exactMatches;
-    }
-
-    res.json({
-      currentProduct,
-      isAmazon,
-      similarProducts
-    });
-  } catch (error) {
-    console.error("Cross-market rec error:", error);
-    res.status(500).json({ message: error.message });
-  }
-};
 
 export const getMyRelifeListings = async (req, res) => {
   try {
